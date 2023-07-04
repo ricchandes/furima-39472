@@ -31,14 +31,13 @@ Things you may want to cover:
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string |unique: true |
+| email              | string |unique: true,null: false, |
 | encrypted_password | string | null: false |
-| sir-name(kanji)    | string | null: false |
-| last-name(kanji)   | string | null: false |
-| sir-name(kana)     | string | null: false |
-| last-name(kana)    | string | null: false |
-| birth-date         |datetime| null: false |
-| tell               | integer|unique: true |
+| sir_name_kanji     | string | null: false |
+| last_name_kanji    | string | null: false |
+| sir_name_kana      | string | null: false |
+| last_name_kana     | string | null: false |
+| birth_date         | date   | null: false |
 
 
 ### Association
@@ -49,17 +48,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column         | Type   | Options     |
-| -------------- | ------ | ----------- |
-| name           | string | null: false |
-| explanation    | text   | null: false |
-| category       | string | null: false |データを選択
-| status         | string | null: false |データを選択
-| delivery-price | string | null: false |データを選択
-| delivery-region| string | null: false |データを選択
-| delivery-date  | string | null: false |データを選択
-| price          | integer| null: false |
-| user           | references | null: false, foreign_key: true |
+| Column            | Type   | Options     |
+| --------------    | ------ | ----------- |
+| name              | string | null: false |
+| explanation       | text   | null: false |
+| category_id       | integer| null: false |
+| status_id         | integer| null: false |
+| delivery_price_id | integer| null: false |
+| prefecture_id     | integer| null: false |
+| delivery_date_id  | integer| null: false |
+| price             | integer| null: false |
+| user_id           | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -71,8 +70,8 @@ Things you may want to cover:
 ## purchases テーブル
 | Column     | Type       | Options                        |
 | ---------- | ------     | ------------------------------ |
-| user       | references | null: false, foreign_key: true |
-| item       | references | null: false, foreign_key: true |
+| user_id    | references | null: false, foreign_key: true |
+| item_id    | references | null: false, foreign_key: true |
 
 - belongs_to :item
 - belongs_to :user
@@ -81,14 +80,14 @@ Things you may want to cover:
 
 ## addresses テーブル
 
-| Column     | Type       | Options     |
-| -------    | ---------- | ----------- |
-| postcode   | integer    | null: false |
-| prefecture | string     | null: false |
-| city       | string     | null: false |
-| address    | string     |             |
-| building   | string     | null: false |
-| tell       | integer    | null: false |
-| item       | references | null: false, foreign_key: true |
+| Column        | Type       | Options     |
+| -------       | ---------- | ----------- |
+| postcode      | string     | null: false |
+| prefecture_id | integer    | null: false |
+| city          | string     | null: false |
+| address       | string     | null: false |
+| building      | string     |             |
+| tell          | string     | null: false |
+| purchase_id   | references | null: false, foreign_key: true |
 
 - belongs_to :purchase
