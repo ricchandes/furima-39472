@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
-        @user.last_name_kanji = 'saori'
+        @user.last_name_kanji = 'かおk'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kanji 全角で入力してください")
       end
