@@ -6,14 +6,14 @@ class User < ApplicationRecord
  validates :nickname,  presence: true
  validates :sir_name_kanji, presence: true
  validates :last_name_kanji, presence: true
- VALID_NAME_REGEX =/[ぁ-んァ-ン一-龥々]/
+ VALID_NAME_REGEX =/\A[ぁ-んァ-ン一-龥]/
 
 with_options presence: true do
 validates :sir_name_kanji, format: { with: VALID_NAME_REGEX, message: '全角で入力してください' }
 validates :last_name_kanji, format: { with: VALID_NAME_REGEX, message: '全角で入力してください' }
 end
 
-VALID_NAME_REGEX =/[ァ-ン]/
+VALID_NAME_REGEX = /\A[ァ-ヶー－]+\z/ 
 
 with_options presence: true do
 validates :sir_name_kana, format: { with: VALID_NAME_REGEX, message: 'カタカナで入力してください' }
