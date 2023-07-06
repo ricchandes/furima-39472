@@ -44,18 +44,33 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordが5文字以下では登録できない' do
-      @user.password = 'saji'
+      @user.password = 'sa12'
       @user.password_confirmation = 'saji'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
-    it 'passwordは半角英数字混合での入力が必須であること' do
+    it '数字のみのpasswordは登録できない' do
       @user.password = '000000'
       @user.password_confirmation = '000000'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password 半角英数を両方含む必要があります')
     end
+
+    it '英字のみのpasswordは登録できない' do
+      @user.password = 'example'
+      @user.password_confirmation = 'example'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password 半角英数を両方含む必要があります')
+    end
+
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password = "パスワード11"
+      @user.password_confirmation = 'パスワード11'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password 半角英数を両方含む必要があります')
+    end
+
 
     it 'passwordとpassword_confirmationが不一致では登録できない' do
       @user.password_confirmation = ''
@@ -75,7 +90,13 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name kanji can't be blank")
     end
 
-    it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
+    it '姓（全角）に半角文字が含まれていると登録できない' do
+      @user.sir_name_kanji = 'yamada'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Sir name kanji 全角で入力してください')
+    end
+
+    it '名（全角）に半角文字が含まれていると登録できない' do
       @user.last_name_kanji = 'かおk'
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name kanji 全角で入力してください')
@@ -93,11 +114,18 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
 
-    it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。' do
+    it '姓（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
       @user.sir_name_kana = '山田'
       @user.valid?
       expect(@user.errors.full_messages).to include('Sir name kana カタカナで入力してください')
     end
+
+    it '名（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+      @user.last_name_kana = 'ひとみ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name kana カタカナで入力してください')
+    end
+
 
     it '生年月日が必須であること。' do
       @user.birth_date = ''
