@@ -50,5 +50,8 @@
       { id: 48, name: '北海道' }
 
     ]
+    include ActiveHash::Associations
+    has_many :items
+
   end
   
