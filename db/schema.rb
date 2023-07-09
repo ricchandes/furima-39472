@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2023_07_09_014017) do
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.string "image", null: false
     t.text "explanation", null: false
     t.integer "category_id", null: false
     t.integer "status_id", null: false
