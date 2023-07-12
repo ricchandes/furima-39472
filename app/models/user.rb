@@ -11,11 +11,11 @@ class User < ApplicationRecord
     validates :last_name_kanji, format: { with: VALID_NAME_REGEX, message: '全角で入力してください' }
   end
 
-  VALID_NAME_REGEX = /\A[ァ-ヶー]+\z/
+  VALID_KANANAME_REGEX = /\A[ァ-ヶー]+\z/
 
   with_options presence: true do
-    validates :sir_name_kana, format: { with: VALID_NAME_REGEX, message: 'カタカナで入力してください' }
-    validates :last_name_kana, format: { with: VALID_NAME_REGEX, message: 'カタカナで入力してください' }
+    validates :sir_name_kana, format: { with: VALID_KANANAME_REGEX, message: 'カタカナで入力してください' }
+    validates :last_name_kana, format: { with: VALID_KANANAME_REGEX, message: 'カタカナで入力してください' }
   end
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
