@@ -65,12 +65,11 @@ RSpec.describe User, type: :model do
     end
 
     it '全角文字を含むパスワードでは登録できない' do
-      @user.password = "パスワード11"
+      @user.password = 'パスワード11'
       @user.password_confirmation = 'パスワード11'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password 半角英数を両方含む必要があります')
     end
-
 
     it 'passwordとpassword_confirmationが不一致では登録できない' do
       @user.password_confirmation = ''
@@ -125,7 +124,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Last name kana カタカナで入力してください')
     end
-
 
     it '生年月日が必須であること。' do
       @user.birth_date = ''
