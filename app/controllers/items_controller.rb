@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update]
 
-
   def new
     @item = Item.new
   end
@@ -30,7 +29,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def update
     @item.update(item_params)
     if @item.save
@@ -38,7 +36,6 @@ class ItemsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   private # ここからプライベートだよー
@@ -51,5 +48,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
 end
