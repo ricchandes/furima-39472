@@ -67,7 +67,7 @@ Things you may want to cover:
 - belongs_to :user
 
 
-## purchases テーブル
+## orders テーブル
 | Column     | Type       | Options                        |
 | ---------- | ------     | ------------------------------ |
 | user       | references | null: false, foreign_key: true |
