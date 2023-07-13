@@ -20,6 +20,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = Order.new
+    @order = @item.order.includes(:user)
+
   end
 
   def edit
