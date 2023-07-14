@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    @order_address = OrderAddress.new
   end
 
   def new
@@ -10,6 +11,7 @@ class OrdersController < ApplicationController
 
 
   def create
+    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -22,14 +24,17 @@ class OrdersController < ApplicationController
 
   private
 
+
+
   def order_params
-    params.require(:order).permit(:user,:item).merge(token: params[:token])
+    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :address, :building, :tell, :item).merge(token: params[:token], user_id: current_user.id)
   end
+
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: order_params[:price], 
+      amount: @item.price, 
       card: order_params[:token],   
       currency: 'jpy'                
     )
