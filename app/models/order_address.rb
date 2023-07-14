@@ -1,4 +1,4 @@
-class OrderAdress < ApplicationRecord
+class OrderAddress < ApplicationRecord
   include ActiveModel::Model
   attr_accessor :postcode, :prefecture_id, :city, :address, :building, :tell, :user_id, :order_id, :address_id, :token
 
@@ -22,5 +22,6 @@ class OrderAdress < ApplicationRecord
     order = Order.create(order_id: order_id, user_id: user_id)
     Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city, address: address, building: building, tell: tell, order: order)
   end
+
 
 end
