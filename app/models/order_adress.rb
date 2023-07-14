@@ -10,6 +10,8 @@ class OrderAdress < ApplicationRecord
     validates :tell, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid. Exclude hyphen(-)"}
     validates :city
     validates :address
+    validates :token
+
 
 
   end
