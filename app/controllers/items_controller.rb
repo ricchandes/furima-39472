@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id && @item.order.nil?
     else
       redirect_to user_session_path
     end
@@ -40,14 +40,12 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if current_user.id == item.user_id
+    return unless current_user.id == item.user_id
     item.destroy
     redirect_to root_path
-    end
   end
 
-
-  private # ここからプライベートだよー
+  private 
 
   def item_params
     params.require(:item).permit(:name, :image, :explanation, :category_id, :status_id, :prefecture_id, :delivery_price_id,
