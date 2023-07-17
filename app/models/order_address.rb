@@ -9,7 +9,7 @@ class OrderAddress
     validates :tell,     format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid. ハイフン(-)をのぞいた半角数字で入力してください' }
     validates :city
     validates :address
-    validates :token, presence: true
+    validates :token
     end
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
