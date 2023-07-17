@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item
 
   def index
-    @item = Item.find(params[:item_id])
     if @item.order.nil? && current_user.id != @item.user.id
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       @order_address = OrderAddress.new
@@ -11,12 +11,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new
-    @order_address = OrderAddress.new
-  end
-
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -43,4 +38,9 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end
