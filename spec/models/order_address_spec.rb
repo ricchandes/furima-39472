@@ -71,25 +71,25 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が9桁以下では購入できない' do
         @order_address.tell = "03222111"
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tell is invalid. Exclude hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Tell is invalid. ハイフン(-)をのぞいた半角数字で入力してください' )
       end
 
       it '電話番号が12桁以上では購入できない' do
         @order_address.tell = "0322221111444"
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tell is invalid. Exclude hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Tell is invalid. ハイフン(-)をのぞいた半角数字で入力してください' )
       end
 
       it '電話番号に半角数字以外が含まれている場合は購入できない' do
         @order_address.tell = "０３１１１１２２２２"
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tell is invalid. Exclude hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Tell is invalid. ハイフン(-)をのぞいた半角数字で入力してください' )
       end
 
       it '電話番号にハイフンが含まれていると保存できない' do
         @order_address.tell = "03-2222-1111"
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tell is invalid. Exclude hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Tell is invalid. ハイフン(-)をのぞいた半角数字で入力してください' )
       end
 
 
