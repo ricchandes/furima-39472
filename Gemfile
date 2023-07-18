@@ -75,9 +75,6 @@ group :test do
   gem "webdrivers"
 end
 
-group :production do
-  gem 'unicorn', '6.1.0'
-end
 
 gem 'active_hash'
 gem 'devise'
@@ -87,3 +84,7 @@ gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem 'gon'
 gem "aws-sdk-s3", require: false
+
+group :production do
+  gem 'unicorn', '6.1.0'
+end
