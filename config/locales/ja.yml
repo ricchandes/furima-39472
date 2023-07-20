@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        sir_name_kanji: お名前(全角)
+        last_name_kanji: お名前(全角)
+        sir_name_kana: お名前カナ(全角)
+        last_name_kana: お名前カナ(全角)
+        birth_date: 生年月日
+
+
+
+      item:
+        name: 商品名
+        explanation: 商品の説明
+        category_id: 商品の詳細(カテゴリー)
+        status_id: 商品の詳細(商品の状態)
+        delivery_price_id: 発送料の負担
+        prefecture_id: 発送元の地域
+        delivery_date_id: 発送までの日数
+        price: 販売価格
+        image: 商品画像
+
+  activemodel:                 #order_addressはモデルじゃないからこうやって記載するよ
+    attributes:
+      order_address:
+        postcode: 郵便番号
+        prefecture_id: 発送先の地域
+        tell: 電話番号
+        city: 市区町村
+        address: 番地
+        token: カード情報          #マージしている情報とか、activestorageで紐づけている情報もvalidationがるならここに記載して大丈夫
