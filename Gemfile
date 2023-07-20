@@ -75,7 +75,7 @@ group :test do
   gem "webdrivers"
 end
 
-
+gem 'rails-i18n'
 gem 'active_hash'
 gem 'devise'
 gem 'pry-rails'
