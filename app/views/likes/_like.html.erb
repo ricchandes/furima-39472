@@ -1,0 +1,7 @@
+      <% if user_signed_in? && @item.liked_by?(current_user)%>
+      <%= image_tag "hoshi.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+       <%=link_to "お気に入り", item_like_path(@item.id),  data: { turbo_method: :delete }, remote: true %>
+      <% else %>
+      <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+       <%=link_to "お気に入り", item_likes_path(@item.id), data: { turbo_method: :post }, remote: true %>
+       <% end %>
