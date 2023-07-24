@@ -95,7 +95,7 @@
 
 <div class="comment-form">
   <% if user_signed_in? %>
-    <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
+    <%= form_with model: [@item, @comment], url: item_comments_path(@item), id: "comment-form" do |f| %>
       <%= f.text_area :text , class: "comment-text"%>
       <%= f.submit "コメントをする", class: "comment-submit" %>
     <% end %>
