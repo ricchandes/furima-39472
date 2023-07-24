@@ -1,5 +1,5 @@
   
-window.addEventListener('click', () => {        //まずはウィンドウズでページをロードしたときに以下のコードが読まれる
+window.addEventListener('load', () => {        //まずはウィンドウズでページをロードしたときに以下のコードが読まれる
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {      //これで入力があるたびにイベントが起こる
     const inputValue        = priceInput.value;     //これで入力した金額の値を取得

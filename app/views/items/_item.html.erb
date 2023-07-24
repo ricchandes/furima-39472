@@ -20,7 +20,7 @@
           <div class='item-price'>
                       <span><%= item.price %>円<br><%= item.delivery_price.name %></span>
             <div class='star-btn'>
-        <%if current_user.likes.where(item_id: item.id).exists? == true %>
+        <%if  user_signed_in? && current_user.likes.where(item_id: item.id).exists?  %>
               <%= image_tag "hoshi.png", class:"star-icon" %>
               <% else %>          
               <%= image_tag "star.png", class:"star-icon" %>
